@@ -13,7 +13,7 @@ model = ChatOpenAI(model="gpt-4o")
 # HumanMessagse:
 #   Message from a human to the AI model.
 messages = [
-    SystemMessage(content="Solve the following math problems"),
+    SystemMessage(content="Solve the following math problems"), # It is best practice that teh SystemMessage is the first message in the sequence.
     HumanMessage(content="What is 81 divided by 9?"),
 ]
 
@@ -27,7 +27,7 @@ print(f"Answer from AI: {result.content}")
 messages = [
     SystemMessage(content="Solve the following math problems"),
     HumanMessage(content="What is 81 divided by 9?"),
-    AIMessage(content="81 divided by 9 is 9."),
+    AIMessage(content="81 divided by 9 is 9."), # The AI's response to the question. This can be used as chat history or to provide feedback to the AI.
     HumanMessage(content="What is 10 times 5?"),
 ]
 
