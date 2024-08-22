@@ -12,7 +12,7 @@ model = ChatOpenAI(model="gpt-4o")
 chat_history = []  # Use a list to store messages
 
 # Set an initial system message (optional)
-system_message = SystemMessage(content="You are a helpful AI assistant.")
+system_message = SystemMessage(content="You are a helpful AI assistant.") # System messages are just general context for the conversation that's about to happen
 chat_history.append(system_message)  # Add system message to chat history
 
 # Chat loop

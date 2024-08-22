@@ -16,15 +16,15 @@ Steps to replicate this example:
     - Authenticate the Google Cloud CLI with your Google account
         - https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev
     - Set your default project to the new Firebase project you created
-5. Enable the Firestore API in the Google Cloud Console:
+5. Enable the Firestore API in the Google Cloud Console: (DON'T NEED TO DO THIS ANYMORE!!!)
     - https://console.cloud.google.com/apis/enableflow?apiid=firestore.googleapis.com&project=crewai-automation
 """
 
 load_dotenv()
 
 # Setup Firebase Firestore
-PROJECT_ID = "langchain-demo-abf48"
-SESSION_ID = "user_session_new"  # This could be a username or a unique ID
+PROJECT_ID = "langchain-crash-course-python" # Replace with your Firebase project ID
+SESSION_ID = "user_session_new"  # This could be a username or a unique ID. This is used to identify each document in the collection in Firestore.
 COLLECTION_NAME = "chat_history"
 
 # Initialize Firestore Client
@@ -51,7 +51,7 @@ while True:
     if human_input.lower() == "exit":
         break
 
-    chat_history.add_user_message(human_input)
+    chat_history.add_user_message(human_input) # Stored as byte string in Firestore. That is normal.It is how Firestore stores the messages.
 
     ai_response = model.invoke(chat_history.messages)
     chat_history.add_ai_message(ai_response.content)
