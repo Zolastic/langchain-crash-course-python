@@ -1,3 +1,6 @@
+# This file 1A is part of the 4_RAG folder. It is a basic example of how to create a vector store using Chroma and OpenAI embeddings.
+# 1B will show how to query the vector store using a query document.
+
 import os
 
 from langchain.text_splitter import CharacterTextSplitter
@@ -21,12 +24,12 @@ if not os.path.exists(persistent_directory):
         )
 
     # Read the text content from the file
-    loader = TextLoader(file_path)
+    loader = TextLoader(file_path, encoding='utf-8')
     documents = loader.load()
 
     # Split the document into chunks
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    docs = text_splitter.split_documents(documents)
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0) # Here, we are splitting the text into chunks of 1000 characters with no overlap. No overlap means that the last 1000 characters of one chunk will not be the first 1000 characters of the next chunk.
+    docs = text_splitter.split_documents(documents) # This will return a list of Document objects, each containing a chunk of the text.
 
     # Display information about the split documents
     print("\n--- Document Chunks Information ---")
