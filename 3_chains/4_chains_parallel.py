@@ -66,8 +66,8 @@ chain = (
     prompt_template
     | model
     | StrOutputParser()
-    | RunnableParallel(branches={"pros": pros_branch_chain, "cons": cons_branch_chain})
-    | RunnableLambda(lambda x: combine_pros_cons(x["branches"]["pros"], x["branches"]["cons"]))
+    | RunnableParallel(branches={"pros": pros_branch_chain, "cons": cons_branch_chain}) # Run the pros and cons analysis in parallel. Example output: {"branches": {"pros": "Pros: ...", "cons": "Cons: ..."}}
+    | RunnableLambda(lambda x: combine_pros_cons(x["branches"]["pros"], x["branches"]["cons"])) # Combine the pros and cons. This is because RunnableParallel returns a dictionary with the results of each branch.
 )
 
 # Run the chain

@@ -70,7 +70,7 @@ branches = RunnableBranch(
         lambda x: "neutral" in x,
         neutral_feedback_template | model | StrOutputParser()  # Neutral feedback chain
     ),
-    escalate_feedback_template | model | StrOutputParser()
+    escalate_feedback_template | model | StrOutputParser() # This is the default branch. If any other branch is not matched, escalate the feedback.
 )
 
 # Create the classification chain
@@ -85,7 +85,8 @@ chain = classification_chain | branches
 # Neutral review - "The product is okay. It works as expected but nothing exceptional."
 # Default - "I'm not sure about the product yet. Can you tell me more about its features and benefits?"
 
-review = "The product is terrible. It broke after just one use and the quality is very poor."
+# review = "The product is excellent. I really enjoyed using it and found it very helpful."
+review = input("Review: ")
 result = chain.invoke({"feedback": review})
 
 # Output the result
