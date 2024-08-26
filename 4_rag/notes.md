@@ -22,3 +22,8 @@
     - That question will be embedded itself so that we can look up similar documents to our question. That embedding will have a numerical representation of "professor" and "werewolf"
     - Whenever we use our retriever to look up similar embeddings in the vector store, it will go like "oh chapter 4 paragraph 1, 2 and 3 all talk about this professor that is a werewolf. Let me give you back those chunks of data/ blob or text so that you can ask questions about them."
     - Once we have those chunk returned, what we can do is pass them over to ChatGPT. All we are doing for the prompt is adding those pieces/ chunks of text at the very beginning of our prompt and then at the very bottom we will have our question.
+
+# Metadata
+
+- Sometimes, LLMs can "hallucinate", meaning that they can get stuff wrong.
+- What's cool is whenever we add in metadata to our RAG query, what we are basically doing is allowing our LLMs to respond with "here is the source of information for where I am generating this information I am passing back to you". This means we can go to the source to double check whether the LLMs response is accurate/ correct.

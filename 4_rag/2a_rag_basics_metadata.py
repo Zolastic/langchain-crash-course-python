@@ -25,13 +25,13 @@ if not os.path.exists(persistent_directory):
         )
 
     # List all text files in the directory
-    book_files = [f for f in os.listdir(books_dir) if f.endswith(".txt")]
+    book_files = [f for f in os.listdir(books_dir) if f.endswith(".txt")] # loop through all files in the directory and only select the ones that end with .txt
 
     # Read the text content from each file and store it with metadata
     documents = []
     for book_file in book_files:
         file_path = os.path.join(books_dir, book_file)
-        loader = TextLoader(file_path)
+        loader = TextLoader(file_path, encoding="utf-8")
         book_docs = loader.load()
         for doc in book_docs:
             # Add metadata to each document indicating its source

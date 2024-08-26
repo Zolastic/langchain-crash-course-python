@@ -18,7 +18,7 @@ if not os.path.exists(file_path):
     )
 
 # Read the text content from the file
-loader = TextLoader(file_path)
+loader = TextLoader(file_path, encoding="utf-8")
 documents = loader.load()
 
 # Split the document into chunks
@@ -56,7 +56,7 @@ create_vector_store(docs, openai_embeddings, "chroma_db_openai")
 # 2. Hugging Face Transformers
 # Uses models from the Hugging Face library.
 # Ideal for leveraging a wide variety of models for different tasks.
-# Note: Running Hugging Face models locally on your machine incurs no direct cost other than using your computational resources.
+# Note: Running Hugging Face models locally on your machine incurs no direct cost other than using your computational resources. Trading performance for cost.
 # Note: Find other models at https://huggingface.co/models?other=embeddings
 print("\n--- Using Hugging Face Transformers ---")
 huggingface_embeddings = HuggingFaceEmbeddings(

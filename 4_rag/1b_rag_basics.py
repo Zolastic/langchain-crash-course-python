@@ -8,7 +8,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 persistent_directory = os.path.join(current_dir, "db", "chroma_db")
 
 # Define the embedding model
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small") # Make sure to use the same model as the one used to create the vector store. It is important to use the same model to ensure compatibility.
 
 # Load the existing vector store with the embedding function
 db = Chroma(persist_directory=persistent_directory,
@@ -20,7 +20,7 @@ query = "Who is Odysseus' wife?"
 # Retrieve relevant documents based on the query
 retriever = db.as_retriever(
     search_type="similarity_score_threshold",
-    search_kwargs={"k": 3, "score_threshold": 0.9},
+    search_kwargs={"k": 3, "score_threshold": 0.4}, # k is the number of documents to retrieve, and score_threshold is the minimum similarity score required for a document to be considered relevant.
 )
 relevant_docs = retriever.invoke(query)
 

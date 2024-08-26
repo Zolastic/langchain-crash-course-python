@@ -30,7 +30,8 @@ retriever = db.as_retriever(
 )
 
 # Create a ChatOpenAI model
-llm = ChatOpenAI(model="gpt-4o")
+# llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOpenAI(model="gpt-4o-mini")
 
 # Contextualize question prompt
 # This system prompt helps the AI understand that it should reformulate the question
@@ -82,7 +83,7 @@ qa_prompt = ChatPromptTemplate.from_messages(
 
 # Create a chain to combine documents for question answering
 # `create_stuff_documents_chain` feeds all retrieved context into the LLM
-question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+question_answer_chain = create_stuff_documents_chain(llm, qa_prompt) # What it does is it takes the retrieved documents and stuffs them into the LLM
 
 # Create a retrieval chain that combines the history-aware retriever and the question answering chain
 rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)

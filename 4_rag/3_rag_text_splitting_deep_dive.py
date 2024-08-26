@@ -23,7 +23,7 @@ if not os.path.exists(file_path):
     )
 
 # Read the text content from the file
-loader = TextLoader(file_path)
+loader = TextLoader(file_path, encoding="utf-8")
 documents = loader.load()
 
 # Define the embedding model
@@ -70,7 +70,7 @@ token_splitter = TokenTextSplitter(chunk_overlap=0, chunk_size=512)
 token_docs = token_splitter.split_documents(documents)
 create_vector_store(token_docs, "chroma_db_token")
 
-# 4. Recursive Character-based Splitting
+# 4. Recursive Character-based Splitting (RECOMMENDED. A good balance between coherence and character limits)
 # Attempts to split text at natural boundaries (sentences, paragraphs) within character limit.
 # Balances between maintaining coherence and adhering to character limits.
 print("\n--- Using Recursive Character-based Splitting ---")
